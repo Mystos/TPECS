@@ -5,7 +5,10 @@ using UnityEngine;
 public class MoveRandom : MonoBehaviour
 {
 
-    public float size = 10;
+    public float sizeX = 10; 
+    public float sizeY = 10;
+    public GameObject background;
+
     private Vector3 point;
 
     // Start is called before the first frame update
@@ -21,7 +24,6 @@ public class MoveRandom : MonoBehaviour
         {
             point = GetNewRandompoint();
         }
-
         if (point != null)
         {
             transform.position = Vector3.MoveTowards(transform.position, point, Time.deltaTime);
@@ -31,6 +33,6 @@ public class MoveRandom : MonoBehaviour
 
     public Vector3 GetNewRandompoint()
     {
-        return new Vector3(Random.Range(-size, size), Random.Range(-size, size), 0);
+        return new Vector3(Random.Range(-sizeX, sizeX), Random.Range(-sizeY, sizeY), 0);
     }
 }
