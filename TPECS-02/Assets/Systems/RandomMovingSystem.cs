@@ -17,10 +17,15 @@ public class RandomMovingSystem : FSystem {
 
 	private void onGOEnter(GameObject go)
     {
-		go.transform.position = new Vector3((Random.value - 0.5f) * 7,
-			(Random.value - 0.5f) * 5.2f);
-		go.GetComponent<RandomTarget>().target = go.transform.position;
+		go.GetComponent<RandomTarget>().target = GetRandomPoint(go);
     }
+
+	private Vector3 GetRandomPoint(GameObject go)
+    {
+		RandomTarget rt = go.GetComponent<RandomTarget>();
+		return new Vector3(Random.Range(-rt.size, rt.size), Random.Range(-rt.size, rt.size), 0);
+    }
+
 
 	protected override void onPause(int currentFrame) {
 	}
@@ -38,8 +43,7 @@ public class RandomMovingSystem : FSystem {
 
             if (rt.target.Equals(go.transform.position))
             {
-				rt.target = new Vector3((Random.value - 0.5f) * 7,
-			(Random.value - 0.5f) * 5.2f);
+				rt.target = GetRandomPoint(go);
             }
             else
             {

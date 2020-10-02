@@ -2,7 +2,7 @@ using UnityEngine;
 using FYFY;
 
 [ExecuteInEditMode]
-public class VirusFactory_wrapper : MonoBehaviour
+public class InfectionSystem_wrapper : MonoBehaviour
 {
 	private void Start()
 	{

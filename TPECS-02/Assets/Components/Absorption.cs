@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-public class RandomTarget : MonoBehaviour {
+public class Absorption : MonoBehaviour {
 	// Advice: FYFY component aims to contain only public members (according to Entity-Component-System paradigm).
-	[HideInInspector]
-	public Vector3 target;
-	public int size;
+	public int nbrAbsorptionMax = 100;
+	public int nbrAbsorption = 0;
+
 }

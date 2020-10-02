@@ -2,11 +2,10 @@
 using FYFY;
 using FYFY_plugins.TriggerManager;
 
-public class EatingSystem : FSystem {
+public class ApoptoseSystem : FSystem {
 	// Use this to update member variables when system pause. 
 	// Advice: avoid to update your families inside this function.
-	private Family tiggeredGO = FamilyManager.getFamily(new AllOfComponents(typeof(Triggered2D), typeof(Absorption)));
-
+	Family canApoptose = FamilyManager.getFamily(new AllOfComponents(typeof(CanApoptose), typeof(Triggered2D)));
 	protected override void onPause(int currentFrame) {
 	}
 
@@ -17,25 +16,19 @@ public class EatingSystem : FSystem {
 
 	// Use to process your families.
 	protected override void onProcess(int familiesUpdateCount) {
-		foreach (GameObject go in tiggeredGO)
-        {
+		foreach (GameObject go in canApoptose)
+		{
 			Triggered2D t2d = go.GetComponent<Triggered2D>();
 
-			Absorption abs = go.GetComponent<Absorption>();
-			foreach(GameObject target in t2d.Targets)
-            {
-				if(target.GetComponent<CanInfect>() == null)
-                {
-					abs.nbrAbsorption++;
-
+			foreach (GameObject target in t2d.Targets)
+			{
+				if (target.GetComponent<Infection>() != null)
+				{
 					GameObjectManager.unbind(target);
-
 					Object.Destroy(target);
 				}
-
-            }
-        }
-
+			}
+		}
 
 	}
 }
